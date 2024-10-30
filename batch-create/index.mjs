@@ -34,60 +34,6 @@ main()
 function main() {
     const args = process.argv.slice(2)
     cmdRoot(args);
-
-    // // You can use ldap:// or ldaps://; the latter would connect over SSL
-    // // (note that this will not use the LDAP TLS extended operation,
-    // // but literally an SSL connection to port 636, as in LDAP v2)
-    // const client = new ldapts.Client({
-    //     url: LDAP_URL,
-    //     timeout: 5 * 1000,
-    //     connectTimeout: 3 * 1000,
-    //     tlsOptions: {
-    //       minVersion: 'TLSv1.2',
-    //       rejectUnauthorized: false,
-    //     },
-    //     strictDN: true,
-    // });
-
-    // // startTLS(options, [controls])
-    // // Performs a StartTLS extended operation against the LDAP server to initiate a
-    // // TLS-secured communication channel over an otherwise clear-text connection.
-
-    // console.log(`ldap: binding to server... url="${LDAP_URL}"`);
-    // try {
-    //     // await client.bind('cn=admin,dc=example,dc=org', 'adminpassword');
-    //     // console.log('ldap: bind success.');
-
-    //     const userName = 'batchuser1';
-
-    //     // console.log('ldap: adding user...');
-    //     // const entry = {
-    //     //     cn: 'batchuser1',
-    //     //     sn: 'batchuser1',
-    //     //     // email: ['foo@bar.com', 'foo1@bar.com'],
-    //     //     objectclass: 'inetOrgPerson',
-    //     // };
-    //     // await client.add('cn=batchuser1,dc=example,dc=org', entry);
-    //     // console.log('ldap: user added successfully.');
-
-    //     // console.log(`ldap: changing password... user=${userName}`);
-    //     // await client.modify(`cn=${userName},dc=example,dc=org`, new ldapts.Change({
-    //     //     operation: 'replace',
-    //     //     modification: new ldapts.Attribute({
-    //     //         type: 'userPassword',  //;binary
-    //     //         values: [ldapPasswordEncode('javasucks')],
-    //     //     }),
-    //     // }));
-    //     // console.log(`ldap: user password changed successfully. user=${userName}`);
-
-    //     await client.bind(`cn=${userName},dc=example,dc=org`, 'javasuckss');
-    //     console.log('ldap: bind success.');
-
-    // } finally {
-    //     console.log('ldap: unbinding connection...');
-    //     await client.unbind();
-    //     console.log('ldap: connection unbound.');
-    // }
 }
 
 /**
