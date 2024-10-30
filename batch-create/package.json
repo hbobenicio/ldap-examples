@@ -1,0 +1,15 @@
+{
+    "name": "batch-create",
+    "version": "0.0.0",
+    "description": "Demonstrates how to create LDAP users in a batch process",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "pki-create": "./scripts/pki-create.sh"
+    },
+    "author": "hbobenicio <hbobenicio@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "ldapts": "^7.2.1"
+    }
+}

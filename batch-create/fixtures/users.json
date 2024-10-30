@@ -1,0 +1,26 @@
+[
+    {
+        "dn": "cn=batchuser1,dc=example,dc=org",
+        "entry": {
+            "cn": "batchuser1",
+            "sn": "batchuser1",
+            "objectclass": "inetOrgPerson"
+        }
+    },
+    {
+        "dn": "cn=batchuser2,dc=example,dc=org",
+        "entry": {
+            "cn": "batchuser2",
+            "sn": "batchuser2",
+            "objectclass": "inetOrgPerson"
+        }
+    },
+    {
+        "dn": "cn=batchuser3,dc=example,dc=org",
+        "entry": {
+            "cn": "batchuser3",
+            "sn": "batchuser3",
+            "objectclass": "inetOrgPerson"
+        }
+    }
+]

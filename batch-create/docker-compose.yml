@@ -1,0 +1,36 @@
+services:
+    ldap-server:
+        image: bitnami/openldap
+        container_name: ldap-server
+        ports:
+            # - '1389:1389'
+            - '1636:1636'  #TLS
+        environment:
+            BITNAMI_DEBUG: 'true'
+
+            LDAP_ENABLE_TLS: 'yes'
+            # LDAP_REQUIRE_TLS: 'yes'  # I think this is for mtls... not a subject for this PoC
+
+            LDAP_TLS_KEY_FILE: /opt/bitnami/openldap/tls/server-key.pem
+            LDAP_TLS_CERT_FILE: /opt/bitnami/openldap/tls/server-cert.pem
+            LDAP_TLS_CA_FILE: /opt/bitnami/openldap/tls/ca-fullchain.pem
+
+            LDAP_PASSWORD_HASH: '{SSHA}'  # this is the default, which is insecure BTW
+
+            LDAP_ROOT: dc=example,dc=org
+
+            LDAP_ADMIN_DN: cn=admin,dc=example,dc=org
+            LDAP_ADMIN_USERNAME: admin
+            LDAP_ADMIN_PASSWORD: adminpassword
+
+            LDAP_USERS: customuser
+            LDAP_PASSWORDS: custompassword
+
+            LDAP_ALLOW_ANON_BINDING: 'no'
+            ALLOW_EMPTY_PASSWORD: 'no'
+
+            LDAP_ENABLE_ACCESSLOG: 'yes'
+        volumes:
+            - './tls/server-key.pem:/opt/bitnami/openldap/tls/server-key.pem:ro'
+            - './tls/server-cert.pem:/opt/bitnami/openldap/tls/server-cert.pem:ro'
+            - './tls/ca-fullchain.pem:/opt/bitnami/openldap/tls/ca-fullchain.pem'
