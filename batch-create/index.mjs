@@ -25,9 +25,10 @@ import * as fs from 'node:fs/promises';
 
 import * as ldapts from 'ldapts';
 
-const LDAP_URL = 'ldaps://localhost:1636';
-const LDAP_OPERATOR_DN = 'cn=admin,dc=example,dc=org';
-const LDAP_OPERATOR_PASSWORD = 'adminpassword';
+// Simple dummy ad-hoc configuration
+const LDAP_URL               = process.env.LDAP_URL               || 'ldaps://localhost:1636';
+const LDAP_OPERATOR_DN       = process.env.LDAP_OPERATOR_DN       || 'cn=admin,dc=example,dc=org';
+const LDAP_OPERATOR_PASSWORD = process.env.LDAP_OPERATOR_PASSWORD || 'adminpassword';
 
 main()
 
@@ -43,7 +44,8 @@ function main() {
  */
 function cmdRoot(args) {
     if (args.length === 0) {
-        throw new Error('bad args');
+        cmdUsagePrint();
+        return;
     }
 
     const cmd = args.shift();
@@ -65,7 +67,7 @@ function cmdRoot(args) {
             break;
     
         default:
-            throw new Error('bad args');
+            throw new Error(`bad command. given=${cmd} expected=["batch-load", "reset-all", "reset", "bind"]`);
     }
 }
 
@@ -279,4 +281,15 @@ function ldapPasswordEncode(password) {
     sha1.update(salt);
     const digest = sha1.digest();
     return '{SSHA}' + Buffer.concat([digest, salt]).toString('base64');
+}
+
+function cmdUsagePrint() {
+    console.log('Usage: node index.mjs <command> [<args>]');
+    console.log();
+    console.log('Commands:');
+    console.log('  batch-load    Add multiple users in a batch from a json fixtures file');
+    console.log('  bind          Performs a bind operation');
+    console.log('  reset         Resets a users password');
+    console.log('  reset-all     Resets all users paswords to a given value');
+    console.log();
 }
